@@ -1,0 +1,153 @@
+featuring engineering
+
+
+
+1. it will tell us how many rows and columns are there
+
+>>>>> df.shape
+
+2. it gives statical values of the given data set like mean ,standard deviation etc
+
+>>>>> df.describe
+
+3. it shows non-null values of the data set
+
+>>>>> df.info( )
+
+4. The isnull().sum() function will help in finding all the null values present in the columns
+
+>>>>> df.isnull( ).sum( )
+
+5. it gives the total count of duplicate in the data frame
+
+>>>>>> df. duplicate().sum()
+
+
+6. to drop rows with missing values
+
+>>>>> df.dropna(inplace=true)
+--------------------------------------------------------------------------
+
+7. Replacing "rem" with no value and scaling the column1.
+
+>>>> df['column1'] = df['column1'].str.replace('rem', ' ' )
+
+>>>> ss= StandardScaler()
+
+>>>> df['column'] = ss.fit_transform(df['column'].values.reshape(-1, 1))
+
+
+8. it will drop the particular column from particular data frame
+
+>>>>> df.drop(['column3'], axis=1, inplace=True)
+
+9. The missing data in the column2 have been imputed using mean.
+
+>>>>> df['column2']=df['column2].fillna (df['column2'].mean())
+
+10. importing submodule pre processing from which we loaded LabelEncoder,StandardScaler for encoding categorical into integer
+
+>>>>>> from sklearn.preprocessing import LabelEncoder
+>>>>>> from sklearn.preprocessing import StandardScaler
+>>>>>> cat_cols=['c1', 'c2','c3'] le=LabelEncoder()
+    >> for i in cat_cols:
+        >>df[i]=le.fit_transform(df[i])
+        >>df.dtypes
+
+11. Values in the column4 has been changed from 4+ to 4
+ 
+>>>>> df['column4']=df[ 'column4'].replace('4+', '4')
+
+12. c1,c2 and c3 values are changed to integer types.
+
+>>>>> df[ 'c1']=df[‘c1'].astype (int)
+>>>>> df['c2']=df['c2'].astype(int)
+>>>>> df [‘c3']=df['c3'].astype(int) 
+
+13. to fill missing values with a specific value
+
+>>>>> df.fillna(value=0)
+
+14. to fill missing values with the mean of the column
+
+>>>>> df.fillna(df.mean())
+
+15. we can also use an existing column to create a new one
+
+>>>>>> df['new_column'] = df['column_1'] + df['column_2'] 
+
+16. To remove a column, you can use the drop function with the axis parameter set
+to 1
+
+>>>>> df.drop('column_name', axis=1)
+------------------------------------------------------
+
+
+Adding and Removing Rows
+
+
+17. to add a new row to a DataFrame by using the append function and
+passing a Series or a dictionary
+
+>>>>> df.append({'column_1': 1, 'column_2': 2}, ignore_index=True) 
+
+18. To remove a row, you can use the drop function with the index parameter
+
+>>>>> df.drop(index=0)
+
+----------------------------------------
+
+
+Renaming Columns
+
+
+
+19. rename the columns of a DataFrame using the rename function and the
+columns parameter
+
+>>>>>> df.rename(columns={'old_name': 'new_name'}) 
+
+
+20. we can also use the columns attribute to rename the columns in place
+
+>>>>>> df.columns = ['new_name_1', 'new_name_2']
+
+-------------------------------------------------
+Iterating Over a DataFrame
+
+21. to use a for loop to iterate over the rows of a DataFrame
+
+>>>>>  for index row in df.iterrows():
+           print(row['column_1'], row['column_2'])
+
+22. we can also use the apply function to apply a function to each row or column
+
+>>>>>  df.apply(lambda row: row['column_1'] + row['column_2'], axis=1)
+
+----------------------------
+
+Conditional Selection:
+
+23. to use the where function to select rows based on a condition
+
+>>>>> df.where(df['age'] > 30)
+
+24. To select columns based on a condition, you can use the select_dtypes function
+and pass the data type as an argument
+
+>>>>> df.select_dtypes(include=['int', 'float'])
+-----------------------------------------
+
+Resetting the Index
+
+
+25. reset the index of a DataFrame using the reset_index function. This will
+create a new column with the old index as its values and set the index to a
+default integer index starting from 0
+
+>>>>> df.reset_index()
+
+
+26. to specify a name for the new index column using the index
+
+>>>>> df.reset_index().index.name = 'new_index_name'
